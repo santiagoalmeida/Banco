@@ -1,0 +1,49 @@
+﻿@using Banco.Web.Constantes
+@model Banco.Web.Models.CuentasViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Cuenta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="cuenta.NumeroCuenta" class="control-label"></label>
+                <input asp-for="cuenta.NumeroCuenta" class="form-control" />
+                <span asp-validation-for="cuenta.NumeroCuenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cuenta.IdCliente" class="control-label"></label>
+                <select asp-for="cuenta.IdCliente" class="form-control" asp-items="Model.SelectClientes"></select> 
+                <span asp-validation-for="cuenta.IdCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cuenta.TipoCuenta" class="control-label"></label>
+                <select asp-for="cuenta.TipoCuenta" class="form-control" asp-items="Html.GetEnumSelectList<TipoCuenta>()"></select>
+                <span asp-validation-for="cuenta.TipoCuenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cuenta.SaldoInicial" class="control-label"></label>
+                <input asp-for="cuenta.SaldoInicial" class="form-control" />
+                <span asp-validation-for="cuenta.SaldoInicial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
