@@ -41,9 +41,10 @@ namespace Banco.Web.Controllers
                 await _movimientoSvc.PostAsync(movimiento);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                ModelState.AddModelError("Valor", ex.Message);
+                return View(movimiento);
             }
         }
 

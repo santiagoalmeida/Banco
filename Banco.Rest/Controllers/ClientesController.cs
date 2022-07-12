@@ -29,7 +29,7 @@ namespace Banco.Rest.Controllers
 
         // GET api/<ClientesController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(int id) => Ok(await _clientesSvc.GetByIdAsync(id));
+        public async Task<ActionResult> Get(int id) => Ok(await _clientesSvc.GetByIdAsync(new Cliente { IdCliente = id }));
 
         // POST api/<ClientesController>
         [HttpPost]
@@ -53,7 +53,7 @@ namespace Banco.Rest.Controllers
         [HttpPut]
         public async Task<ActionResult> Put(ClienteRequest cliente)
         {
-            Cliente cli = await _clientesSvc.GetByIdAsync(cliente.IdCliente);
+            Cliente cli = await _clientesSvc.GetByIdAsync(new Cliente { IdCliente = cliente.IdCliente });
             cli.Nombres = cliente.Nombres;
             cli.Genero = cliente.Genero;
             cli.Edad = cliente.Edad;

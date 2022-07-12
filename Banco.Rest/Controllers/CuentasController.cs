@@ -23,27 +23,33 @@ namespace Banco.Rest.Controllers
 
         // GET api/<CuentasController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(int id) => Ok(await _CuentasSvc.GetByIdAsync(id));
+        public async Task<ActionResult> Get(string id) => Ok(await _CuentasSvc.GetByIdAsync(new Cuenta { NumeroCuenta = id }));
 
         // POST api/<CuentasController>
         [HttpPost]
-        public async void Post(CuentaRequest cuenta)
+        public async Task<ActionResult> Post(CuentaRequest cuenta)
         {
-
-            await _CuentasSvc.CreateAsync(new Cuenta
+            try
             {
-                NumeroCuenta = cuenta.NumeroCuenta,
-                IdCliente = cuenta.IdCliente,
-                TipoCuenta = cuenta.TipoCuenta,
-                SaldoInicial = cuenta.SaldoInicial,
-                Estado = cuenta.Estado,
-            });
-        }
+                await _CuentasSvc.CreateAsync(new Cuenta
+                {
+                    NumeroCuenta = cuenta.NumeroCuenta,
+                    IdCliente = cuenta.IdCliente,
+                    TipoCuenta = cuenta.TipoCuenta,
+                    SaldoInicial = cuenta.SaldoInicial,
+                    Estado = cuenta.Estado,
+                });
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
+        }
         // PUT api/<CuentasController>/5
         [HttpPut]
-        public async Task Put(CuentaRequest cuenta)
-        {
+        public async Task Put(CuentaRequest cuenta) =>
             await _CuentasSvc.UpdateAsync(new Cuenta
             {
                 NumeroCuenta = cuenta.NumeroCuenta,
@@ -52,7 +58,6 @@ namespace Banco.Rest.Controllers
                 SaldoInicial = cuenta.SaldoInicial,
                 Estado = cuenta.Estado,
             });
-        }
 
         // DELETE api/<CuentasController>/5
         [HttpDelete("{NumeroCuenta}")]

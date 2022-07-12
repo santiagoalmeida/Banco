@@ -75,9 +75,6 @@ namespace Banco.DataAccess.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 
-                    b.Property<int>("ClienteIdCliente")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Estado")
                         .HasColumnType("bit");
 
@@ -92,7 +89,7 @@ namespace Banco.DataAccess.Migrations
 
                     b.HasKey("NumeroCuenta");
 
-                    b.HasIndex("ClienteIdCliente");
+                    b.HasIndex("IdCliente");
 
                     b.ToTable("Cuentas");
                 });
@@ -105,16 +102,12 @@ namespace Banco.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMovimiento"), 1L, 1);
 
-                    b.Property<string>("CuentaNumeroCuenta")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(8)");
-
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("NumeroCuenta")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<int>("TipoMovimiento")
                         .HasColumnType("int");
@@ -124,7 +117,7 @@ namespace Banco.DataAccess.Migrations
 
                     b.HasKey("IdMovimiento");
 
-                    b.HasIndex("CuentaNumeroCuenta");
+                    b.HasIndex("NumeroCuenta");
 
                     b.ToTable("Movimientos");
                 });
@@ -133,7 +126,7 @@ namespace Banco.DataAccess.Migrations
                 {
                     b.HasOne("Banco.Core.Entities.DAO.Cliente", "Cliente")
                         .WithMany("Cuentas")
-                        .HasForeignKey("ClienteIdCliente")
+                        .HasForeignKey("IdCliente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -144,7 +137,7 @@ namespace Banco.DataAccess.Migrations
                 {
                     b.HasOne("Banco.Core.Entities.DAO.Cuenta", "Cuenta")
                         .WithMany("Movimientos")
-                        .HasForeignKey("CuentaNumeroCuenta")
+                        .HasForeignKey("NumeroCuenta")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

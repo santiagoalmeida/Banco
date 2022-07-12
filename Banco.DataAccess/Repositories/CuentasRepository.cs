@@ -1,5 +1,6 @@
 ﻿using Banco.Core.Entities.DAO;
 using Banco.Core.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Banco.DataAccess.Repositories
 {
@@ -8,9 +9,10 @@ namespace Banco.DataAccess.Repositories
         public CuentasRepository(BancoDbContext context)
             : base(context)
         { }
+
         public async Task<IEnumerable<Cuenta>> GetAllCuentasAsync()
         {
-            return from cu in BancoDbContext.Cuentas
+            var querie = from cu in BancoDbContext.Cuentas
                    select new Cuenta
                    {
                        NumeroCuenta = cu.NumeroCuenta,
@@ -20,7 +22,9 @@ namespace Banco.DataAccess.Repositories
                        IdCliente = cu.IdCliente,
                        Cliente = new Cliente { IdCliente = cu.Cliente.IdCliente, Nombres = cu.Cliente.Nombres }
                    };
+            return await querie.ToListAsync();
         }
+
         private BancoDbContext BancoDbContext
         {
             get { return Context as BancoDbContext; }

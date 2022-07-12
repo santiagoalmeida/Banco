@@ -1,4 +1,5 @@
 ﻿using Banco.Core.Entities.DAO;
+using Banco.Core.Entities.Requests;
 using Banco.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,19 +23,29 @@ namespace Banco.Rest.Controllers
 
         // GET api/<MovimientosController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(int id) => Ok(await _movimientosSvc.GetByIdAsync(id));
+        public async Task<ActionResult> Get(int id) => Ok(await _movimientosSvc.GetByIdAsync(new Movimiento { IdMovimiento = id }));
 
         // POST api/<MovimientosController>
         [HttpPost]
-        public async void Post(MovimientoRequest movimiento) =>
-            await _movimientosSvc.CreateAsync(new Movimiento
+        public async Task<ActionResult> Post(MovimientoRequest movimiento)
+        {
+            try
             {
-                IdMovimiento = movimiento.IdMovimiento,
-                Fecha = movimiento.Fecha,
-                TipoMovimiento = movimiento.TipoMovimiento,
-                Valor = movimiento.Valor,
-                NumeroCuenta = movimiento.NumeroCuenta,
-            });
+                await _movimientosSvc.CreateAsync(new Movimiento
+                {
+                    IdMovimiento = movimiento.IdMovimiento,
+                    Fecha = movimiento.Fecha,
+                    TipoMovimiento = movimiento.TipoMovimiento,
+                    Valor = movimiento.Valor,
+                    NumeroCuenta = movimiento.NumeroCuenta,
+                });
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         // PUT api/<MovimientosController>/5
         [HttpPut]
@@ -51,5 +62,10 @@ namespace Banco.Rest.Controllers
         // DELETE api/<MovimientosController>/5
         [HttpDelete("{IdMovimiento}")]
         public async void Delete(int IdMovimiento) => await _movimientosSvc.DeleteAsync(new Movimiento { IdMovimiento = IdMovimiento });
+
+        [HttpPost("Reportes")]
+        public async Task<ActionResult<IEnumerable<Movimiento>>> GetConsultaMovimientos(ConsultaMovimientosRequest request) => 
+            Ok(await _movimientosSvc.GetQueryMovimientosAsync(request));
+
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Banco.Web.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 
@@ -42,12 +44,16 @@ namespace Banco.Web.Services
             try
             {
                 StringContent strJson = new StringContent(JsonSerializer.Serialize<TEntity>(entity), Encoding.UTF8, "application/json");
-                await _httpClient.PostAsync(_remoteServiceBaseUrl, strJson);
+                var resp = await _httpClient.PostAsync(_remoteServiceBaseUrl, strJson);
+                if (resp.StatusCode == HttpStatusCode.BadRequest)
+                {
 
+                    throw new System.Exception(resp.Content.ReadAsStringAsync().Result);
+                }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -55,6 +61,21 @@ namespace Banco.Web.Services
         {
             StringContent strJson = new StringContent(System.Text.Json.JsonSerializer.Serialize<TEntity>(entity), Encoding.UTF8, "application/json");
             var resp = await _httpClient.PutAsync(_remoteServiceBaseUrl, strJson);
+        }
+
+        public async Task<IEnumerable<ConsultaMovimientos>> GetReporteMovimientosAsync(ParamsConsultaMovimientos paramsConsulta)
+        {
+            var urlConsulta = _remoteServiceBaseUrl + "Reportes/";
+            var resp = await _httpClient.PostAsJsonAsync(urlConsulta, paramsConsulta);
+            if (resp.StatusCode == HttpStatusCode.OK)
+            {
+                IEnumerable<ConsultaMovimientos> entity = JsonSerializer.Deserialize<IEnumerable<ConsultaMovimientos>>(resp.Content.ReadAsStringAsync().Result);
+                return entity;
+            }
+            else
+            {
+                throw new System.Exception(resp.Content.ReadAsStringAsync().Result);
+            }
         }
     }
 }

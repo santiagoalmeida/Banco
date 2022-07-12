@@ -14,28 +14,28 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="cuenta.NumeroCuenta" class="control-label"></label>
-                <input asp-for="cuenta.NumeroCuenta" class="form-control" />
-                <span asp-validation-for="cuenta.NumeroCuenta" class="text-danger"></span>
+                <label asp-for="cuenta.numeroCuenta" class="control-label"></label>
+                <input asp-for="cuenta.numeroCuenta" class="form-control" />
+                <span asp-validation-for="cuenta.numeroCuenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="cuenta.IdCliente" class="control-label"></label>
-                <select asp-for="cuenta.IdCliente" class="form-control" asp-items="Model.SelectClientes"></select> 
-                <span asp-validation-for="cuenta.IdCliente" class="text-danger"></span>
+                <label asp-for="cuenta.idCliente" class="control-label"></label>
+                <select asp-for="cuenta.idCliente" class="form-control" asp-items="Model.SelectClientes"></select> 
+                <span asp-validation-for="cuenta.idCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="cuenta.TipoCuenta" class="control-label"></label>
-                <select asp-for="cuenta.TipoCuenta" class="form-control" asp-items="Html.GetEnumSelectList<TipoCuenta>()"></select>
-                <span asp-validation-for="cuenta.TipoCuenta" class="text-danger"></span>
+                <label asp-for="cuenta.tipoCuenta" class="control-label"></label>
+                <select asp-for="cuenta.tipoCuenta" class="form-control" asp-items="Html.GetEnumSelectList<TipoCuenta>()"></select>
+                <span asp-validation-for="cuenta.tipoCuenta" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="cuenta.SaldoInicial" class="control-label"></label>
-                <input asp-for="cuenta.SaldoInicial" class="form-control" />
-                <span asp-validation-for="cuenta.SaldoInicial" class="text-danger"></span>
+                <label asp-for="cuenta.saldoInicial" class="control-label"></label>
+                <input asp-for="cuenta.saldoInicial" class="form-control" />
+                <span asp-validation-for="cuenta.saldoInicial" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="cuenta.Estado" /> @Html.DisplayNameFor(model => model.cuenta.Estado)
+                    <input class="form-check-input" asp-for="cuenta.estado" /> @Html.DisplayNameFor(model => model.cuenta.estado)
                 </label>
             </div>
             <div class="form-group">

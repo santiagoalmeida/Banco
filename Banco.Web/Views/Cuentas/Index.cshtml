@@ -13,19 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NumeroCuenta)
+                @Html.DisplayNameFor(model => model.numeroCuenta)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TipoCuenta)
+                @Html.DisplayNameFor(model => model.tipoCuenta)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SaldoInicial)
+                @Html.DisplayNameFor(model => model.saldoInicial)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Estado)
+                @Html.DisplayNameFor(model => model.estado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdCliente)
+                @Html.DisplayNameFor(model => model.idCliente)
             </th>
             <th></th>
         </tr>
@@ -35,24 +35,24 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumeroCuenta)
+                    @Html.DisplayFor(modelItem => item.numeroCuenta)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TipoCuenta)
+                    @Html.DisplayFor(modelItem => item.tipoCuenta)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SaldoInicial)
+                    @Html.DisplayFor(modelItem => item.saldoInicial)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Estado)
+                    @Html.DisplayFor(modelItem => item.estado)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.cliente.nombres)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.NumeroCuenta }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.NumeroCuenta }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.NumeroCuenta  })
+                    @Html.ActionLink("Edit", "Edit", new { id=item.numeroCuenta }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.numeroCuenta }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.numeroCuenta  })
                 </td>
             </tr>
         }

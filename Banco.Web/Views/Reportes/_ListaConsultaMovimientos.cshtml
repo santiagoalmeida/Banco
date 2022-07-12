@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Banco.Web.Models.ConsultaMovimientos>
+
+@{
+    var cuentas = Model.Select(c => c.numeroCuenta).Distinct();
+}
+@foreach (var cta in cuentas)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.fecha)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.numeroCuenta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.saldoInicial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.movimiento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.saldoDisponible)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(c => c.numeroCuenta == cta))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.numeroCuenta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.saldoInicial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.movimiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.saldoDisponible)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+}
+

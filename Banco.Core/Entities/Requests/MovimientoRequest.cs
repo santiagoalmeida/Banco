@@ -9,6 +9,5 @@ namespace Banco.Core.Entities.DAO
         public TipoMovimiento TipoMovimiento { get; set; }
         public int Valor { get; set; }
         public string NumeroCuenta { get; set; }
-        public Cuenta Cuenta { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Banco.Core.Entities.DAO;
+﻿using Banco.Core.Constantes;
+using Banco.Core.Entities.DAO;
 using Banco.Core.Interfaces;
 using Banco.Core.Interfaces.Services;
 
@@ -14,24 +15,84 @@ namespace Banco.Services
 
         public async Task CreateAsync(Cuenta entity)
         {
-            await _unitOfWork.Cuentas.AddAsync(entity);
-            await _unitOfWork.CommitAsync();
+            try
+            {
+                await _unitOfWork.Cuentas.AddAsync(entity);
+                await _unitOfWork.CommitAsync();
+                await _unitOfWork.Movimientos.AddAsync(new Movimiento
+                {
+                    NumeroCuenta = entity.NumeroCuenta,
+                    Fecha = DateTime.Now,
+                    TipoMovimiento = TipoMovimiento.Deposito,
+                    Valor = entity.SaldoInicial
+                });
+                await _unitOfWork.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                //log
+                throw ex;
+            }
         }
 
         public async Task DeleteAsync(Cuenta entity)
         {
-            entity = await _unitOfWork.Cuentas.GetByIdAsync(entity.NumeroCuenta);
-            _unitOfWork.Cuentas.Remove(entity);
-            await _unitOfWork.CommitAsync();
+            try
+            {
+                entity = await _unitOfWork.Cuentas.GetByIdAsync(entity.NumeroCuenta);
+                _unitOfWork.Cuentas.Remove(entity);
+                await _unitOfWork.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                //log
+            }
         }
 
-        public async Task<IEnumerable<Cuenta>> GetAllAsync() => await _unitOfWork.Cuentas.GetAllCuentasAsync();
-        public async Task<Cuenta> GetByIdAsync(int id) => await _unitOfWork.Cuentas.GetByIdAsync(id);
+        public async Task<IEnumerable<Cuenta>> GetAllAsync()
+        {
+            IEnumerable<Cuenta> cuentas = new List<Cuenta>();
+            try
+            {
+                cuentas = await _unitOfWork.Cuentas.GetAllCuentasAsync();
+            }
+            catch (Exception ex)
+            {
+                //log
+            }
+            return cuentas;
+        }
+        public async Task<Cuenta> GetByIdAsync(Cuenta entity)
+        {
+            Cuenta cuenta = new Cuenta();
+            try
+            {
+                cuenta = await _unitOfWork.Cuentas.GetByIdAsync(entity.NumeroCuenta);
+            }
+            catch (Exception ex)
+            {
+                //log
+            }
+            return cuenta;
+        }
 
         public async Task UpdateAsync(Cuenta entity)
         {
-            _unitOfWork.Cuentas.Update(entity);
-            await _unitOfWork.CommitAsync();
+            try
+            {
+                Cuenta cta = await _unitOfWork.Cuentas.GetByIdAsync(entity.NumeroCuenta);
+                cta.TipoCuenta = entity.TipoCuenta;
+                cta.IdCliente = entity.IdCliente;
+                cta.Estado = entity.Estado;
+                cta.SaldoInicial = entity.SaldoInicial;
+
+                _unitOfWork.Cuentas.Update(cta);
+                await _unitOfWork.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                //log
+            }
         }
     }
 }
