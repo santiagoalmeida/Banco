@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "d756052d-8ceb-4dbb-a132-14080caa9943",
+		"name": "NTT Data Prueba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "302286"
+	},
+	"item": [
+		{
+			"name": "Post Cliente - Juan Osorio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombres\": \"Marianela Montalvo\",\r\n  \"genero\": 2,\r\n  \"edad\": 27,\r\n  \"identificacion\": \"098874587\",\r\n  \"direccion\": \"13 junio y Equinoccial\",\r\n  \"telefono\": \" 098874587\",\r\n  \"contraseña\": \" 1245\",\r\n  \"estado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7272/api/clientes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7272",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get clientes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7272/api/clientes/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7272",
+					"path": [
+						"api",
+						"clientes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get movimientos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7272/api/movimientos/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7272",
+					"path": [
+						"api",
+						"movimientos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cuentas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7272/api/cuentas/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7272",
+					"path": [
+						"api",
+						"cuentas",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

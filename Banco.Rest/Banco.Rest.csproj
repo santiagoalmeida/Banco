@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Banco.Services\Banco.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PostmanCollection\" />
+  </ItemGroup>
+
 </Project>
