@@ -4,12 +4,12 @@ Instrucciones:
 
 1. Abrir en visual studio 2022.
 Arquitectura:
-|-Servicio
+-Servicio
   |-Banco.Core(Entities, interfaces, definitions)
   |-Banco.DataAccess(DbContext, ConfigurationEntities, Migrations, Repositories, UnitOfWork)
   |-Banco.Rest(ServicioRest)
   |-Banco.Services(BusinessLogic)
-|-Cleinte
+-Cleinte
   |-Banco.Web(Aplicacion de cliente)
   
 2. Click derecjo solución>Propiedades y configurar multiples proyectos de inicio como en la imagen:
