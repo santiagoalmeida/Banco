@@ -3,9 +3,8 @@ Prueba técnica
 Instrucciones:
 
 1. Abrir en visual studio 2022.
-
-Arquitectura:
 ___
+Arquitectura:
 Servicio\
 ├─Banco.Core(Entities, interfaces, definitions)\
 ├─Banco.DataAccess(DbContext, ConfigurationEntities, Migrations, Repositories, UnitOfWork)\
