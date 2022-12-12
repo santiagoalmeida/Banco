@@ -15,7 +15,7 @@ Cleinte\
 └─Banco.Web(Aplicacion de cliente)
 ___
 
-2. Crear la db con el script que se encuentra en la carpeta de Documento y cambiar la cadena de conección si es necesario. 😉
+2. Crear la db con el script que se encuentra en la carpeta de Docs y cambiar la cadena de conección si es necesario. 😉
 
 3. Click derecho solución>Propiedades y configurar multiples proyectos de inicio como en la imagen:
 ![image](https://user-images.githubusercontent.com/4412640/178529422-2ff492ea-b5de-4344-9e2e-2aedd915ab5f.png)
@@ -25,3 +25,5 @@ ___
 ![image](https://user-images.githubusercontent.com/4412640/178539146-4fd5ec8a-4b50-42e3-bb86-b78563994e1d.png)
 ![image](https://user-images.githubusercontent.com/4412640/178539181-b96c4202-7ea7-4942-8e1a-eef3ded34302.png)
 ![image](https://user-images.githubusercontent.com/4412640/178538577-02b19f3f-dc83-4cd7-8909-cb318a51c99b.png)
+
+Nota: Las pruebas de Postman se encuentran en la carpeta Docs
