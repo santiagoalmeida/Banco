@@ -29,9 +29,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-string dbPath = String.Format(builder.Configuration.GetConnectionString("Default"), $"{builder.Environment.ContentRootPath}data\\db_banco.mdf");
-
-builder.Services.AddDbContext<BancoDbContext>(options => options.UseSqlServer(dbPath, x =>
+builder.Services.AddDbContext<BancoDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default"), x =>
 {
     x.MigrationsAssembly("Banco.DataAccess");
     x.EnableRetryOnFailure();
