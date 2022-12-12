@@ -10,14 +10,15 @@ Servicio\
 ├─Banco.Core(Entities, interfaces, definitions)\
 ├─Banco.DataAccess(DbContext, ConfigurationEntities, Migrations, Repositories, UnitOfWork)\
 ├─Banco.Rest(ServicioRest)\
-└─Banco.Services(BusinessLogic)\
+└─Banco.Services(BusinessLogic)
 Cleinte\
 └─Banco.Web(Aplicacion de cliente)
 ___
-2. Click derecho solución>Propiedades y configurar multiples proyectos de inicio como en la imagen:
-![image](https://user-images.githubusercontent.com/4412640/178529422-2ff492ea-b5de-4344-9e2e-2aedd915ab5f.png)
 
-3. Presionar ejecutar, la db esta incluida en la carpeta data del proyecto Banco.Rest. 😉
+2. Crear la db con el script que se encuentra en la carpeta de Documento y cambiar la cadena de conección si es necesario. 😉
+
+3. Click derecho solución>Propiedades y configurar multiples proyectos de inicio como en la imagen:
+![image](https://user-images.githubusercontent.com/4412640/178529422-2ff492ea-b5de-4344-9e2e-2aedd915ab5f.png)
 
 ![image](https://user-images.githubusercontent.com/4412640/178537969-08ebe109-fb69-4cf6-a069-b31a10023ca7.png)
 ![image](https://user-images.githubusercontent.com/4412640/178538280-00d76208-6753-4189-be8b-0e931f67afe2.png)
